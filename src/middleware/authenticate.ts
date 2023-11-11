@@ -23,12 +23,6 @@ export default async function (ctx: Context, next: Next) {
     if (!user) {
       const signer = await getSigner()
       const wallet = Wallet.createRandom()
-      console.log({
-        address,
-        signerUUID: signer.signerUUID,
-        paymentAddress: wallet.address,
-        paymentPrivateKey: wallet.privateKey,
-      })
       user = await UserModel.create({
         address,
         signerUUID: signer.signerUUID,
