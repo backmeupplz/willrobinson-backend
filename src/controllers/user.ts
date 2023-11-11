@@ -71,7 +71,7 @@ export default class UserController {
       // Paid until a month from now
       await UserModel.findOneAndUpdate(
         { address: user.address },
-        { paidUntil: new Date(Date.now() + 86400 * 30 * 1000) }
+        { paidUntil: new Date(Date.now() + 24 * 60 * 60 * 1000) }
       )
     }
     // Make a change
