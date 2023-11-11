@@ -43,12 +43,16 @@ export default async function () {
         console.log(
           `Liking "${lastCast.value.text}" by ${lastCast.value.author.fid} for ${user.address}...`
         )
-        await client.v2.reactToCast(
-          user.signerUUID,
-          'like' as any,
-          lastCast.value.hash
-        )
-        console.log('Liked!')
+        try {
+          await client.v2.reactToCast(
+            user.signerUUID,
+            'like' as any,
+            lastCast.value.hash
+          )
+          console.log('Liked!')
+        } catch (error) {
+          console.log('Error while liking the latest cast:', error)
+        }
       }, timeout * 1000)
     }
     console.log('Set all timeouts!')
