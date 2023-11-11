@@ -7,10 +7,10 @@ dotenv.config({ path: resolve(cwd(), '.env') })
 
 // eslint-disable-next-line node/no-process-env
 export default cleanEnv(process.env, {
-  FACEBOOK_APP_ID: str(),
-  FACEBOOK_APP_SECRET: str(),
-  JWT: str(),
+  FARCASTER_MNEMONIC: str(),
+  FID: num(),
+  API_KEY: str(),
   MONGO: str(),
   PORT: num({ default: 1337 }),
-  TELEGRAM_LOGIN_TOKEN: str(),
+  ALCHEMY_KEY: str(),
 })

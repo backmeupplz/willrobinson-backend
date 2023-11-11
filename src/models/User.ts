@@ -1,4 +1,5 @@
 import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose'
+import SignerUUIDStatus from '@/models/SignerUUIDStatus'
 
 @modelOptions({
   schemaOptions: { timestamps: true },
@@ -9,13 +10,6 @@ export class User {
   // UUID
   @prop({ index: true, required: true })
   signerUUID!: string
-  @prop({
-    index: true,
-    required: true,
-    enum: SignerUUIDStatus,
-    default: SignerUUIDStatus.pending,
-  })
-  signerUUIDStatus!: SignerUUIDStatus
   // Setup
   @prop({ index: true, default: false, required: true })
   active!: boolean

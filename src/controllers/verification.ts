@@ -4,8 +4,10 @@ import { Controller, Get, Params } from 'amala'
 
 @Controller('/verification')
 export default class VerificationController {
-  @Get('/')
+  @Get('/:address')
   async verificationMessage(@Params() { address }: Verification) {
-    return getVerificationMessage(address)
+    return {
+      verificationMessage: getVerificationMessage(address),
+    }
   }
 }

@@ -1,7 +1,8 @@
 import { Context, Next } from 'koa'
-import { ethers } from 'ethers'
+import { Wallet, ethers } from 'ethers'
 import getVerificationMessage from '@/helpers/getVerificationMessage'
 import { UserModel } from '@/models/User'
+import getSigner from '@/helpers/getSigner'
 
 export default async function (ctx: Context, next: Next) {
   try {
@@ -18,7 +19,23 @@ export default async function (ctx: Context, next: Next) {
     // Get address from signature
     ethers.verifyMessage(getVerificationMessage(address), signature)
     // Get user
-    const user = await UserModel.findOne({ address })
+    let user = await UserModel.findOne({ address })
+    if (!user) {
+      const signer = await getSigner()
+      const wallet = Wallet.createRandom()
+      console.log({
+        address,
+        signerUUID: signer.signerUUID,
+        paymentAddress: wallet.address,
+        paymentPrivateKey: wallet.privateKey,
+      })
+      user = await UserModel.create({
+        address,
+        signerUUID: signer.signerUUID,
+        paymentAddress: wallet.address,
+        paymentPrivateKey: wallet.privateKey,
+      })
+    }
     ctx.state.user = user
   } catch (err) {
     return ctx.throw(
@@ -26,5 +43,5 @@ export default async function (ctx: Context, next: Next) {
       'Ugh oh! Something went wrong with authentication. Nowhere to report though, no one will hear you shouting into the void.'
     )
   }
-  await next()
+  return next()
 }

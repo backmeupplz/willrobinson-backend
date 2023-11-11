@@ -12,9 +12,13 @@ And you should be good to go! Feel free to fork and submit pull requests.
 
 ## Environment variables
 
-| Name                                     | Description                              |
-| ---------------------------------------- | ---------------------------------------- |
-| `MONGO`                                  | URL of the mongo database                |
-| `PORT`                                   | Port to run server on (defaults to 1337) |
+| Name                 | Description                              |
+| -------------------- | ---------------------------------------- |
+| `MONGO`              | URL of the mongo database                |
+| `PORT`               | Port to run server on (defaults to 1337) |
+| `FARCASTER_MNEMONIC` | Mnemonic for the the main app            |
+| `FID`                | Farcaster ID for the main app            |
+| `API_KEY`            | [Neynar](https://neynar.com) API key     |
+| `ALCHEMY_KEY`        | [Alchemy](https://alchemy.com) key       |
 
 Also, please, consider looking at `.env.sample`.
