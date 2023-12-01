@@ -1,5 +1,6 @@
 import client from '@/helpers/client'
 import { UserModel } from '@/models/User'
+import exceptions from './exceptions'
 
 let lastCastHash = ''
 export default async function () {
@@ -21,6 +22,12 @@ export default async function () {
     console.log(
       `Last cast: "${lastCast.value.text}", author: "${lastCast.value.author.fid}"`
     )
+    if (exceptions.includes(Number(lastCast.value.author.fid))) {
+      console.log(
+        `Skipping "${lastCast.value.text}" by ${lastCast.value.author.fid}...`
+      )
+      return
+    }
     const author = await client.v1.lookupUserByFid(+lastCast.value.author.fid)
     if (!author) {
       console.log('Author not found')
