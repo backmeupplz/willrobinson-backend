@@ -13,4 +13,5 @@ export default [
   11528, // @jrf
   9856, // @0xluo.eth
   880, // @accountless.eth
+  10694, // @chukwukaosakwe
 ]
