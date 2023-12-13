@@ -15,4 +15,5 @@ export default [
   880, // @accountless.eth
   10694, // @chukwukaosakwe
   1606, // @samantha
+  12567, // @philcockfield.eth
 ]
