@@ -14,4 +14,5 @@ export default [
   9856, // @0xluo.eth
   880, // @accountless.eth
   10694, // @chukwukaosakwe
+  1606, // @samantha
 ]
